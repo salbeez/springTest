@@ -22,7 +22,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.kosta.myapp" />
-	
+	<context:component-scan base-package="com.github.study.ex01"/>
 	
 	
 </beans:beans>
