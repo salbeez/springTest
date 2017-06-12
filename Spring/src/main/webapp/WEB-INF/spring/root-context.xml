@@ -12,15 +12,11 @@
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
-<!-- Mysql용 
- 	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/mydb?characterEncoding=EUCKR" />
-		<property name="username" value="abcd" />
-		<property name="password" value="pppw" />
-	</bean> 
--->
+	<!-- Mysql용 <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> <property 
+		name="url" value="jdbc:mysql://localhost:3306/mydb?characterEncoding=EUCKR" 
+		/> <property name="username" value="abcd" /> <property name="password" value="pppw" 
+		/> </bean> -->
 	<!-- oracle -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -33,7 +29,14 @@
 	<bean id="sqlSesstionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property ref="dataSource" name="dataSource"></property>
 		<property name="configLocation" value="classpath:/mybatis-config.xml"></property>
+
+		<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property><!-- sql Mapper -->
 	</bean>
 
-	
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"
+		destroy-method="clearCache">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSesstionFactory"></constructor-arg>
+	</bean>
+
+	<context:component-scan base-package="org.zerock.presistence"></context:component-scan><!-- 빈 등록 -->
 </beans>

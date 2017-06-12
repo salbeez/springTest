@@ -1,0 +1,9 @@
+create table tbl_member(
+	userid varchar2(50) not null,
+	userpw varchar2(50) not null,
+	username varchar2(50) not null,
+	email varchar2(100),
+	regdate timestamp default SYSDATE,
+	updatedate timestamp default SYSDATE,
+	CONSTRAINT PK_USERID PRIMARY KEY(userid) --�⺻Ű
+)
