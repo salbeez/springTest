@@ -27,7 +27,7 @@ public class ProductVo {
 
 	@Override
 	public String toString() {
-		return "productVo [name=" + name + ", price=" + price + "]";
+		return "ProductVo [name=" + name + ", price=" + price + "]";
 	}
 
 }

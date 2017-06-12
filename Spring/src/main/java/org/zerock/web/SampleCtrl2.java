@@ -28,7 +28,7 @@ public class SampleCtrl2 {
 		ProductVo product = new ProductVo("apple", 10000);
 		logger.info("doB 실행");
 
-		model.addAttribute(product);
+		//model.addAttribute(product);
 		return "sample/productDetail";
 	}
 
@@ -50,7 +50,7 @@ public class SampleCtrl2 {
 	@RequestMapping("/doJSON")
 	public @ResponseBody ProductVo doJSON() {
 		logger.info("/doJSON 실행");
-		ProductVo vo = new ProductVo("aaaaa", 30000);
+		ProductVo vo = new ProductVo("한글", 30000);
 		return vo;
 	}
 }
