@@ -3,7 +3,7 @@
 
 <mapper namespace="org.zerock.mapper.MemberMapper">
 	<select id="getTime" resultType="String">
-		select sysdate from dual
+		select SYSTIMESTAMP from dual
 	</select>
 
 	<insert id="insertMember">
