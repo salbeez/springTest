@@ -18,10 +18,16 @@
 		/> <property name="username" value="abcd" /> <property name="password" value="pppw" 
 		/> </bean> -->
 	<!-- oracle -->
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" 
+		/> <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" /> <property 
+		name="username" value="scott" /> <property name="password" value="tiger" 
+		/> </bean> -->
+
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+		<property name="url" value="jdbc:log4jdbc:oracle:thin:localhost:1521:xe" />
 		<property name="username" value="scott" />
 		<property name="password" value="tiger" />
 	</bean>
@@ -38,5 +44,6 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSesstionFactory"></constructor-arg>
 	</bean>
 
-	<context:component-scan base-package="org.zerock.presistence"></context:component-scan><!-- 빈 등록 -->
+	<context:component-scan base-package="org.zerock.presistence"></context:component-scan><!-- 
+		빈 등록 -->
 </beans>
