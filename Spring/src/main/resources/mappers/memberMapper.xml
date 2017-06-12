@@ -21,4 +21,19 @@
 		where #{userid} and userpw=#{userpw}
 	</select>
 
+
+	<!-- 수업용 -->
+	<select id="selEname" resultType="String">
+		select ename from emp where empno=7788
+	</select>
+	
+	<select id="selEMP" resultType="org.zerock.domain.Emp" parameterType="int">
+		select empno,ename,sal from emp where deptno= #{deptno}
+	</select>
+	
+	<select id="selGuest" resultType="guest">
+		select id,name,email
+		from guest 
+		order by id desc
+	</select>
 </mapper>

@@ -23,5 +23,6 @@
 	
 	<context:component-scan base-package="com.kosta.myapp" />	
 	<context:component-scan base-package="org.zerock.web" />	
+	<context:component-scan base-package="org.guest" />	
 	
 </beans:beans>

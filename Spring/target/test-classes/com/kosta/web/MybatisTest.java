@@ -24,6 +24,7 @@ public class MybatisTest {
 	@Test
 	public void testSession() throws Exception {
 		try (SqlSession session = sqlFactory.openSession()) {
+			System.out.println("XML문서내의 sql 호출 가능 여부");
 			System.out.println("session : "+session);
 
 		} catch (Exception e) {

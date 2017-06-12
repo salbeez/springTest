@@ -5,4 +5,9 @@
 
 <configuration>
 
+	<typeAliases>
+		<typeAlias type="org.zerock.domain.User" alias="guest" />
+		<typeAlias type="com.guest.domain.GuestVO" alias="guestRow"/>
+	</typeAliases>
+	
 </configuration>

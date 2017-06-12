@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.guest.mapper">
+
+	<select id="selectSingleRow" resultType="guestRow">
+		select * from TBL_BOARD
+		where bno=1;
+	</select>
+
+	<select id="selectAllBoard" resultType="guestRow">
+		select * from TBL_BOARD
+		where bno>0 order by bno desc
+	</select>
+
+	<insert id="insertBoard">
+		insert into TBL_BOARD (bno,title,content,WIRTER) values
+		(tbl_board_seq.nextval,'제목입니다','내용입니다','user00')
+	</insert>
+
+	<delete id="delectSingleRow">
+		delete from TBL_BOARD where bno=1
+	</delete>
+
+</mapper>
