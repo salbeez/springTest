@@ -33,7 +33,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );//req와 완전 똑같다
 		
-		return "home";
+		return "home";//home.jsp ,0609/first
 	}
 	
 }
