@@ -32,13 +32,13 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public void delete(int bno) throws Exception {
-		session.selectList(namespace + ".listAll");
+		session.delete(namespace + ".delete");
 	}
 
 	@Override
 	public List<GuestVO> listAll() throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return session.selectList(namespace+".listAll");
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.kosta.web;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -24,8 +26,8 @@ public class BoardDAOTest {
 	@Test
 	public void testCreate() throws Exception {
 		GuestVO vo = new GuestVO();
-		vo.setTitle("새로운 글을 넣습니다");
-		vo.setContent("새로운 글 내용을 넣습니다");
+		vo.setTitle("111새로운 글을 넣습니다");
+		vo.setContent("111새로운 글 내용을 넣습니다");
 		vo.setWriter("user10");
 		dao.create(vo);
 	}
@@ -35,7 +37,7 @@ public class BoardDAOTest {
 		logger.info(dao.read(1).toString());
 	}
 
-	@Test
+	//@Test
 	public void testUpdate() throws Exception {
 		GuestVO vo = new GuestVO();
 		vo.setBno(1);
@@ -48,4 +50,10 @@ public class BoardDAOTest {
 	public void testDelete() throws Exception {
 		dao.delete(1);
 	}
+	@Test
+	public void testlistALL() throws Exception {
+		List<GuestVO> list =   dao.listAll();
+		logger.info("가져온 사이즈 : "+list.size());
+	}
+	
 }
