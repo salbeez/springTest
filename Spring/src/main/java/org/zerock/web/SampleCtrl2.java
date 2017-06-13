@@ -28,7 +28,7 @@ public class SampleCtrl2 {
 		ProductVo product = new ProductVo("apple", 10000);
 		logger.info("doB 실행");
 
-		//model.addAttribute(product);
+		model.addAttribute(product);//key값으로 첫글자가 소문자인 productVo로 
 		return "sample/productDetail";
 	}
 

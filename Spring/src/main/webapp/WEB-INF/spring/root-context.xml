@@ -45,6 +45,8 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSesstionFactory"></constructor-arg>
 	</bean>
 
-	<context:component-scan base-package="org.zerock.presistence"></context:component-scan><!-- 
-		빈 등록 -->
+	<!-- 빈 등록 -->
+	<context:component-scan base-package="org.zerock.presistence"></context:component-scan>
+	<context:component-scan base-package="com.guest.persistence"></context:component-scan>
+	<context:component-scan base-package="com.guest.service"></context:component-scan>
 </beans>

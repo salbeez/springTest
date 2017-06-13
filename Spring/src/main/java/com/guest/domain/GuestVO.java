@@ -6,18 +6,11 @@ public class GuestVO {
 	private int bno;
 	private String title;
 	private String content;
-	private String wirter;
+	private String writer;
 	private Date regdate;
 	private int viewcnt;
 
 	public GuestVO() {
-	}
-
-	public GuestVO(int bno, String title, String content, String wirter) {
-		this.bno = bno;
-		this.title = title;
-		this.content = content;
-		this.wirter = wirter;
 	}
 
 	public int getBno() {
@@ -44,12 +37,12 @@ public class GuestVO {
 		this.content = content;
 	}
 
-	public String getWirter() {
-		return wirter;
+	public String getWriter() {
+		return writer;
 	}
 
-	public void setWirter(String wirter) {
-		this.wirter = wirter;
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 
 	public Date getRegdate() {
@@ -66,6 +59,12 @@ public class GuestVO {
 
 	public void setViewcnt(int viewcnt) {
 		this.viewcnt = viewcnt;
+	}
+
+	@Override
+	public String toString() {
+		return "GuestVO [bno=" + bno + ", title=" + title + ", content=" + content + ", writer=" + writer + ", regdate="
+				+ regdate + ", viewcnt=" + viewcnt + "]";
 	}
 
 }
