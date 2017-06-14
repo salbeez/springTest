@@ -13,7 +13,7 @@
 	});
 
 	$(document).on("click", ".btn-warnin", function() {
-		formObj.attr("action", "/board/modify");
+		formObj.attr("action", "/board/modifyPage");
 		formObj.attr("method", "get");
 		formObj.submit();
 	});

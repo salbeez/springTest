@@ -19,3 +19,5 @@ CREATE TABLE TBL_BOARD
 , CONSTRAINT TBL_BOARD_PK PRIMARY KEY (BNO)ENABLE 
 );
 CREATE SEQUENCE tbl_board_seq START WITH 1 INCREMENT BY 1 MAXVALUE 100 CYCLE NOCACHE;
+
+insert into TBL_BOARD (bno,TITLE,content,writer,regdate) values (tbl_board_seq.nextval,'제목'||tbl_board_seq.nextval,'내용입니다','user'||tbl_board_seq.nextval,sysdate);

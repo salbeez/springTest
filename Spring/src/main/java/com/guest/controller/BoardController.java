@@ -59,9 +59,8 @@ public class BoardController {
 		// @RequestParam은 request.getParameter과 유사하다 다른점은 문자열,숫자,날짜들의 형변환이 가능하다
 	}
 
-	@RequestMapping(value = "/board/remove", method = RequestMethod.POST)
-	public String remove(@RequestParam("bno") int bno,Criteria cri, RedirectAttributes rttr)
-			throws Exception {
+	@RequestMapping(value = "/board/remove", method = { RequestMethod.GET, RequestMethod.POST })
+	public String remove(@RequestParam("bno") int bno, Criteria cri, RedirectAttributes rttr) throws Exception {
 		service.remove(bno);
 		rttr.addFlashAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
@@ -70,18 +69,20 @@ public class BoardController {
 		return "redirect:/board/listPage";
 	}
 
-	@RequestMapping(value = "/board/modify", method = RequestMethod.GET)
-	public void modifyGET(int bno, Model model) throws Exception {// name값 bno를
-																	// 알아서 찾음
+	@RequestMapping(value = "/board/modifyPage", method = RequestMethod.GET)
+	public void modifyGET(@RequestParam("bno") int bno, @ModelAttribute("cri") Criteria cri, Model model)
+			throws Exception {
+		//걍 int bno하면  submit한 name값 bno를 알아서 찾음
 		model.addAttribute(service.read(bno));
 	}
 
-	@RequestMapping(value = "/board/modify", method = RequestMethod.POST) // 수정창이
-																			// 따로
-																			// 있음
-	public String modifyPOST(GuestVO vo, RedirectAttributes rttr) throws Exception {
+	@RequestMapping(value = "/board/modifyPage", method = RequestMethod.POST)
+	// 수정창이 따로 있음
+	public String modifyPOST(GuestVO vo, Criteria cri, RedirectAttributes rttr) throws Exception {
 		logger.info("mod post......");
 		service.modify(vo);
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		return "redirect:/board/listPage";
 
