@@ -8,12 +8,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.guest.domain.Criteria;
 import com.guest.domain.GuestVO;
+import com.guest.domain.PageMaker;
 import com.guest.service.BoardService;
 import com.kosta.myapp.HomeController;
 
@@ -41,7 +44,7 @@ public class BoardController {
 
 		rttr.addFlashAttribute("msg", "SUCCESS");
 		// return "/board/success";
-		return "redirect:/board/listAll";
+		return "redirect:/board/listPage";
 	}
 
 	@RequestMapping("/board/listAll")
@@ -50,17 +53,21 @@ public class BoardController {
 		model.addAttribute("list", service.listAll());
 	}
 
-	@RequestMapping(value = "/board/read", method = RequestMethod.GET)
-	public void read(@RequestParam("bno") int bno, Model model) throws Exception {
+	@RequestMapping(value = "/board/readPage", method = RequestMethod.GET)
+	public void read(@RequestParam("bno") int bno, @ModelAttribute("cri") Criteria cri, Model model) throws Exception {
 		model.addAttribute(service.read(bno));
 		// @RequestParam은 request.getParameter과 유사하다 다른점은 문자열,숫자,날짜들의 형변환이 가능하다
 	}
 
 	@RequestMapping(value = "/board/remove", method = RequestMethod.POST)
-	public String remove(@RequestParam("bno") int bno, RedirectAttributes rttr) throws Exception {
-		service.read(bno);
+	public String remove(@RequestParam("bno") int bno,Criteria cri, RedirectAttributes rttr)
+			throws Exception {
+		service.remove(bno);
+		rttr.addFlashAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		rttr.addFlashAttribute("msg", "SUCCESS");
-		return "redirect:/board/listAll";
+		System.out.println("여기까지");
+		return "redirect:/board/listPage";
 	}
 
 	@RequestMapping(value = "/board/modify", method = RequestMethod.GET)
@@ -69,12 +76,30 @@ public class BoardController {
 		model.addAttribute(service.read(bno));
 	}
 
-	@RequestMapping(value = "/board/modify", method = RequestMethod.POST)//수정창이 따로 있음
+	@RequestMapping(value = "/board/modify", method = RequestMethod.POST) // 수정창이
+																			// 따로
+																			// 있음
 	public String modifyPOST(GuestVO vo, RedirectAttributes rttr) throws Exception {
 		logger.info("mod post......");
 		service.modify(vo);
 		rttr.addFlashAttribute("msg", "SUCCESS");
-		return "redirect:/board/listAll";
+		return "redirect:/board/listPage";
 
+	}
+
+	@RequestMapping(value = "/listCri", method = RequestMethod.GET)
+	public void listAll(Criteria cri, Model model) throws Exception {
+		logger.info("show list Page with Criteria..........");
+		model.addAttribute("list", service.listCriteria(cri));
+	}
+
+	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
+	public void listpage(Criteria cri, Model model) throws Exception {
+		logger.info(cri.toString());
+		model.addAttribute("list", service.listCriteria(cri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.totCount());
+		model.addAttribute("pageMaker", pageMaker);
 	}
 }

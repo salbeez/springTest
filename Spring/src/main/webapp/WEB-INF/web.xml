@@ -10,6 +10,14 @@
 		<param-value>/WEB-INF/spring/root-context.xml</param-value>
 	</context-param>
 
+
+	<context-param>
+	<!-- 이런걸 EL로 가져 올수 있는데 가져오는 방법은 ${initParam.{name} ex) ${initParam.root} -->
+	<!-- 값은 /Spring이 나온다 -->
+		<param-name>root</param-name>
+		<param-value>/Spring</param-value>
+	</context-param>
+	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

@@ -19,18 +19,23 @@
 	});
 
 	$(document).on("click", ".btn-danger", function() {
+		formObj.attr("method","get");
 		formObj.attr("action", "/board/remove");
 		formObj.submit();
 	});
 
 	$(document).on("click", ".btn-primary", function() {
-		self.location = "/board/listPage";
+		formObj.attr("method","get");
+		formObj.attr("action", "/board/listPage");
+		formObj.submit();
 	});
 </script>
 <%@ include file="../include/header.jsp"%>
 
 <form role="form" method="post">
 	<input type="hidden" name="bno" value="${guestVO.bno }">
+	<input type="hidden" name="page" value="${cri.page }">
+	<input type="hidden" name="perPageNum" value="${cri.perPageNum }">
 </form>
 
 <div class="box-body">

@@ -2,6 +2,7 @@ package com.guest.persistence;
 
 import java.util.List;
 
+import com.guest.domain.Criteria;
 import com.guest.domain.GuestVO;
 
 public interface BoardDAO {
@@ -14,4 +15,10 @@ public interface BoardDAO {
 	public void delete(int bno) throws Exception;
 
 	public List<GuestVO> listAll() throws Exception;
+
+	public List<GuestVO> listPage(int page, int perPageNum) throws Exception;
+
+	public List<GuestVO> listCriteria(Criteria cri) throws Exception;
+
+	public int totCount() throws Exception;
 }

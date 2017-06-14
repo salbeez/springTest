@@ -10,7 +10,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import com.guest.domain.Criteria;
 import com.guest.domain.GuestVO;
 import com.guest.persistence.BoardDAO;
 
@@ -23,7 +26,7 @@ public class BoardDAOTest {
 
 	private static Logger logger = LoggerFactory.getLogger(BoardDAOTest.class);
 
-	@Test
+	// @Test
 	public void testCreate() throws Exception {
 		GuestVO vo = new GuestVO();
 		vo.setTitle("111새로운 글을 넣습니다");
@@ -32,12 +35,12 @@ public class BoardDAOTest {
 		dao.create(vo);
 	}
 
-	@Test
+	// @Test
 	public void testRead() throws Exception {
 		logger.info(dao.read(1).toString());
 	}
 
-	//@Test
+	// @Test
 	public void testUpdate() throws Exception {
 		GuestVO vo = new GuestVO();
 		vo.setBno(1);
@@ -46,14 +49,55 @@ public class BoardDAOTest {
 		dao.update(vo);
 	}
 
-	//@Test
+	// @Test
 	public void testDelete() throws Exception {
 		dao.delete(1);
 	}
-	@Test
+
+	// @Test
 	public void testlistALL() throws Exception {
-		List<GuestVO> list =   dao.listAll();
-		logger.info("가져온 사이즈 : "+list.size());
+		List<GuestVO> list = dao.listAll();
+		logger.info("가져온 사이즈 : " + list.size());
 	}
-	
+
+	// @Test
+	public void testListPage() throws Exception {
+		List<GuestVO> list = dao.listPage(1, 5);
+		logger.info("가져온 사이즈 : " + list.size());
+	}
+
+	// @Test
+	public void testListPage2() throws Exception {
+		Criteria cri = new Criteria();
+		List<GuestVO> list = dao.listCriteria(cri);
+		logger.info("가져온 사이즈 : " + list.size());
+	}
+
+	// @Test
+	public void totCount() throws Exception {
+		int totCount = dao.totCount();
+		logger.info("총 데이터의 수 : " + totCount);
+	}
+
+	// @Test
+	public void testURI() throws Exception {
+		UriComponents uriComponents = UriComponentsBuilder.newInstance().path("/board/read").queryParam("bno", 12)
+				.queryParam("perPageNum", 20).build();
+		logger.info("/board/read?bno=12&perPageNum=20");
+		logger.info(uriComponents.toString());
+	}
+
+	@Test
+	public void testURI2() throws Exception {
+		UriComponents uriComponents = UriComponentsBuilder.newInstance()
+				.path("/{model}/{page}")
+				.queryParam("bno", 12)
+				.queryParam("perPageNum", 20)
+				.build()
+				.expand("board","read")
+				.encode();
+		logger.info("/board/read?bno=12&perPageNum=20");
+		logger.info(uriComponents.toString());
+	}
+
 }
