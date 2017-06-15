@@ -13,6 +13,7 @@ import org.zerock.domain.User;
 
 import com.guest.domain.Criteria;
 import com.guest.domain.GuestVO;
+import com.guest.domain.SearchCriteria;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -67,6 +68,18 @@ public class BoardDAOImpl implements BoardDAO {
 	public int totCount() throws Exception {
 		
 		return session.selectOne(namespace + ".totCount");
+	}
+
+	@Override
+	public int listSearchCount(SearchCriteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace+".listSearchCount",cri);
+	}
+
+	@Override
+	public List<GuestVO> listSearch(SearchCriteria cri) throws Exception {
+		RowBounds bounds = new RowBounds(cri.gerPageStart(),cri.getPerPageNum());//시작 위치, 결과행 갯수
+		return session.selectList(namespace+".listSearch",cri,bounds);
 	}
 
 }

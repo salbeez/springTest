@@ -49,4 +49,39 @@
 	<select id="totCount" resultType="int">
 		select count(*) from tbl_board
 	</select>
+	
+	<select id="countPaging" resultType="int">
+	<![CDATA[
+		select count(bno) from tbl_board where bno>0
+	]]>
+	</select>
+	
+	<select id="listSearch" resultType="guestRow">
+		<![CDATA[ 
+			select *
+			from tbl_board
+			where bno>0
+ 		]]>
+ 		<include refid="search"></include>
+ 		<![CDATA[ 
+			order by bno desc
+ 		]]>
+	</select>
+	
+	<sql id="search"><!-- 함수처럼 호출 가능 -->
+ 		<if test="searchType !=null">
+ 			<if test="searchType == 't'.toString()">and title like #{keyword}</if>
+ 			<if test="searchType == 'c'.toString()">and content like #{keyword}</if>
+ 			<if test="searchType == 'w'.toString()">and writer like #{keyword}</if>
+ 			<if test="searchType == 'tc'.toString()">and (title like #{keyword} OR content like #{keyword})</if>
+ 			<if test="searchType == 'cw'.toString()">and (content like #{keyword} OR writer like #{keyword})</if>
+ 			<if test="searchType == 'tcw'.toString()">and (title like #{keyword} OR content like #{keyword}OR writer like #{keyword})</if>
+ 		</if>
+	</sql>
+	
+	<select id="listSearchCount" resultType="int">
+		<![CDATA[
+			select count(bno) from tbl_board where bno>0
+		]]>
+	</select>
 </mapper>
