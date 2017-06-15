@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.guest.domain.Criteria;
 import com.guest.domain.GuestVO;
+import com.guest.domain.SearchCriteria;
 import com.guest.persistence.BoardDAO;
 
 @Service
@@ -51,4 +52,14 @@ public class BoardServiceImpl implements BoardService {
 		return dao.totCount();
 	}
 
+	@Override
+	public int listSearchCount(SearchCriteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.listSearchCount(cri);
+	}
+
+	@Override
+	public List<GuestVO> listSearchCriteria(SearchCriteria cri) throws Exception {
+		return dao.listSearch(cri);
+	}
 }

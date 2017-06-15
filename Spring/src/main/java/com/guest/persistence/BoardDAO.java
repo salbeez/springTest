@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.guest.domain.Criteria;
 import com.guest.domain.GuestVO;
+import com.guest.domain.SearchCriteria;
 
 public interface BoardDAO {
 	public void create(GuestVO vo) throws Exception;
@@ -21,4 +22,8 @@ public interface BoardDAO {
 	public List<GuestVO> listCriteria(Criteria cri) throws Exception;
 
 	public int totCount() throws Exception;
+
+	public int listSearchCount(SearchCriteria cri) throws Exception;
+	
+	public List<GuestVO> listSearch(SearchCriteria cri) throws Exception;
 }
