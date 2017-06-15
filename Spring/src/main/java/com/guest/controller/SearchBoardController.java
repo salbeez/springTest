@@ -31,7 +31,7 @@ public class SearchBoardController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 //		pageMaker.setTotalCount(service.listCountCriteria(cri));
-		
+		pageMaker.set
 		model.addAttribute("pageMaker",pageMaker);
 	}
 }
