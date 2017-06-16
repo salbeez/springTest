@@ -3,8 +3,8 @@
 
 <mapper namespace="com.guest.BoardMapper">
 	<insert id="create">
-		insert into tbl_board (bno,title,content,writer)
-		values (tbl_board_seq.nextval,#{title},#{content},#{writer})
+		insert into tbl_board (bno,title,content,writer,regdate)
+		values (tbl_board_seq.nextval,#{title},#{content},#{writer},sysdate)
 	</insert>
 
 	<select id="read" resultType="guestRow">
@@ -17,7 +17,7 @@
 
 	<update id="update">
 		update tbl_board set title=#{title},
-		content=#{content}
+		content=#{content},regdate = sysdate
 		where bno=#{bno}
 	</update>
 

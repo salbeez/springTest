@@ -78,7 +78,8 @@
 <div class="text-center">
 	<ul class="pagination">
 		<c:if test="${pageMaker.prev}">
-			<li><a href="list?page=${pageMaker.makeSearch(pageMaker.startpage -1)}">&laquo;</a></li>
+			 <li><a href="list${pageMaker.makeSearch(pageMaker.startpage -1)}">&laquo;</a></li> 
+			<%-- <li><a href="list?page=${pageMaker.startpage -1}">&laquo;</a></li> --%>
 		</c:if>
 
 		<c:forEach var="idx" begin="${pageMaker.startpage}"	end="${pageMaker.endpage}">
@@ -89,7 +90,8 @@
 		</c:forEach>
 
 		<c:if test="${pageMaker.next && pageMaker.endpage >0}">
-			<li><a href="list?page=${pageMaker.makeSearch(pageMaker.endpage +1)}">&raquo;</a></li>
+			<li><a href="list${pageMaker.makeSearch(pageMaker.endpage +1)}">&raquo;</a></li> 
+			<%-- <li><a href="list?page=${pageMaker.endpage +1}">&raquo;</a></li> --%>
 		</c:if>
 	</ul>
 

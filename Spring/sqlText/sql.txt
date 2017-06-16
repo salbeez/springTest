@@ -21,3 +21,5 @@ CREATE TABLE TBL_BOARD
 CREATE SEQUENCE tbl_board_seq START WITH 1 INCREMENT BY 1 MAXVALUE 100 CYCLE NOCACHE;
 
 insert into TBL_BOARD (bno,TITLE,content,writer,regdate) values (tbl_board_seq.nextval,'제목'||tbl_board_seq.nextval,'내용입니다','user'||tbl_board_seq.nextval,sysdate);
+
+insert into tbl_board (bno,title,content,writer,regdate)  (select tbl_board_seq.nextval, title,content,writer,regdate from tbl_board);
