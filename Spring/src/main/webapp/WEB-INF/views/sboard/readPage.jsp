@@ -13,24 +13,31 @@
 	});
 
 	$(document).on("click", ".btn-warnin", function() {
-		formObj.attr("action", "/board/modify");
+		formObj.attr("action", "/sboard/modifyPage");
 		formObj.attr("method", "get");
 		formObj.submit();
 	});
 
 	$(document).on("click", ".btn-danger", function() {
-		formObj.attr("action", "/board/remove");
+		formObj.attr("method","get");
+		formObj.attr("action", "/sboard/remove");
 		formObj.submit();
 	});
 
 	$(document).on("click", ".btn-primary", function() {
-		self.location = "/sboard/list";
+		formObj.attr("method","get");
+		formObj.attr("action", "/sboard/list");
+		formObj.submit();
 	});
 </script>
 <%@ include file="../include/header.jsp"%>
 
 <form role="form" method="post">
 	<input type="hidden" name="bno" value="${guestVO.bno }">
+	<input type="hidden" name="page" value="${cri.page }">
+	<input type="hidden" name="perPageNum" value="${cri.perPageNum }">
+	<input type="hidden" name="searchType" value="${cri.searchType }">
+	<input type="hidden" name="keyword" value="${cri.keyword }">
 </form>
 
 <div class="box-body">

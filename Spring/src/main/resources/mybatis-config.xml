@@ -8,6 +8,8 @@
 	<typeAliases>
 		<typeAlias type="org.zerock.domain.User" alias="guest" />
 		<typeAlias type="com.guest.domain.GuestVO" alias="guestRow"/>
+		<typeAlias type="com.guest.domain.ReplyVO" alias="replyRow"/>
+		
 	</typeAliases>
 	
 </configuration>

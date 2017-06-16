@@ -3,8 +3,8 @@
 
 <mapper namespace="com.guest.BoardMapper">
 	<insert id="create">
-		insert into tbl_board (bno,title,content,writer)
-		values (tbl_board_seq.nextval,#{title},#{content},#{writer})
+		insert into tbl_board (bno,title,content,writer,regdate)
+		values (tbl_board_seq.nextval,#{title},#{content},#{writer},sysdate)
 	</insert>
 
 	<select id="read" resultType="guestRow">
@@ -17,7 +17,7 @@
 
 	<update id="update">
 		update tbl_board set title=#{title},
-		content=#{content}
+		content=#{content},regdate = sysdate
 		where bno=#{bno}
 	</update>
 
@@ -70,12 +70,12 @@
 	
 	<sql id="search"><!-- 함수처럼 호출 가능 -->
  		<if test="searchType !=null">
- 			<if test="searchType == 't'.toString()">and title like #{keyword}</if>
- 			<if test="searchType == 'c'.toString()">and content like #{keyword}</if>
- 			<if test="searchType == 'w'.toString()">and writer like #{keyword}</if>
- 			<if test="searchType == 'tc'.toString()">and (title like #{keyword} OR content like #{keyword})</if>
- 			<if test="searchType == 'cw'.toString()">and (content like #{keyword} OR writer like #{keyword})</if>
- 			<if test="searchType == 'tcw'.toString()">and (title like #{keyword} OR content like #{keyword}OR writer like #{keyword})</if>
+ 			<if test="searchType == 't'.toString()">and title like '%'||#{keyword}||'%'</if>
+ 			<if test="searchType == 'c'.toString()">and content like '%'||#{keyword}||'%'</if>
+ 			<if test="searchType == 'w'.toString()">and writer like '%'||#{keyword}||'%'</if>
+ 			<if test="searchType == 'tc'.toString()">and (title like '%'||#{keyword}||'%' OR content like '%'||#{keyword}||'%')</if>
+ 			<if test="searchType == 'cw'.toString()">and (content like '%'||#{keyword}||'%' OR writer like '%'||#{keyword}||'%')</if>
+ 			<if test="searchType == 'tcw'.toString()">and (title like '%'||#{keyword}||'%' OR content like '%'||#{keyword}||'%' OR writer like '%'||#{keyword})||'%'</if>
  		</if>
 	</sql>
 	
@@ -83,5 +83,6 @@
 		<![CDATA[
 			select count(bno) from tbl_board where bno>0
 		]]>
+		<include refid="search"></include>
 	</select>
 </mapper>
