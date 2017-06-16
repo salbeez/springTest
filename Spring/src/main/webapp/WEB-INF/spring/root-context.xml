@@ -26,16 +26,12 @@
 		<property name="password" value="tiger" />
 	</bean>
 
-	<!-- <!-- oracle2 log4j2인데 ORA-12505 오류남 -->
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
-		<property name="url" value="jdbc:log4jdbc:oracle:thin:localhost:1521:xe" />
-		오라클 엔터프라이즈급인 경우 xe대신 DB명을 넣는다
-		<property name="username" value="scott" />
-		<property name="password" value="tiger" />
-	</bean>
-	-->
+	<!-- oracle2 log4j2인데 ORA-12505 오류남 -->
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" 
+		/> <property name="url" value="jdbc:log4jdbc:oracle:thin:localhost:1521:xe" 
+		/> <property name="username" value="scott" /> <property name="password" value="tiger" 
+		/> </bean> -->
 
 	<bean id="sqlSesstionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property ref="dataSource" name="dataSource"></property>
