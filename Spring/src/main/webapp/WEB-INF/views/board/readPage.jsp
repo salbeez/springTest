@@ -26,7 +26,7 @@
 
 	$(document).on("click", ".btn-primary", function() {
 		formObj.attr("method","get");
-		formObj.attr("action", "/board/listPage");
+		formObj.attr("action", "/sboard/list");
 		formObj.submit();
 	});
 </script>

@@ -19,7 +19,7 @@ public class SearchCriteria extends Criteria {
 
 	public void setKeyword(String keyword) {
 		if (!keyword.contains("%")) {
-			this.keyword = "%" + keyword + "%";
+			this.keyword = keyword;
 		}
 	}
 
