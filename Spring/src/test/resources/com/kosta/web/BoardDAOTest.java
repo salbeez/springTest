@@ -96,7 +96,7 @@ public class BoardDAOTest {
 		logger.info(uriComponents.toString());
 	}
 
-	@Test
+	//@Test
 	public void testDynamic1() throws Exception {
 		SearchCriteria cri = new SearchCriteria();
 		cri.setPage(1);

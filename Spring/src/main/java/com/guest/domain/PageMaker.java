@@ -13,9 +13,7 @@ public class PageMaker {
 	private int endpage;
 	private boolean prev;
 	private boolean next;
-
 	private int displatPageNum = 10;
-
 	private Criteria cri;
 
 	public int getTotalCount() {

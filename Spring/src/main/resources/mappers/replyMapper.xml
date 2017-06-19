@@ -3,9 +3,16 @@
 
 <mapper namespace="com.guest.ReplyMapper">
 
-	<select id="list">
-		select * from tbl_reply where bno=#{bno} order by rno
-		desc
+	<select id="list" resultType="replyRow">
+		select * from tbl_reply where bno=#{bno} order by rno desc
+	</select>
+
+	<select id="listPage" resultType="replyRow">
+		select * from tbl_reply where bno = #{bno} order by rno desc
+	</select>
+	
+	<select id="count" resultType="int"><!-- 게시글 1개에 대한 총 댓글수 -->
+		select count(*) from tbl_reply where bno = #{bno}
 	</select>
 
 	<insert id="create">

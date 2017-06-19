@@ -54,7 +54,7 @@ public class BoardDAOImpl implements BoardDAO {
 		int countPage = perPageNum;// 한 페이지에 보여질 행의 수
 		int offset = (page-1)*countPage;
 		RowBounds bounds = new RowBounds(offset, countPage);//시작 위치, 결과행 갯수
-		return session.selectList(namespace + ".listAll",null,bounds);
+		return session.selectList(namespace + ".listPage",null,bounds);
 	}
 
 	@Override

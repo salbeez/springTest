@@ -2,6 +2,7 @@ package com.guest.persistence;
 
 import java.util.List;
 
+import com.guest.domain.Criteria;
 import com.guest.domain.ReplyVO;
 
 public interface ReplyDAO {
@@ -9,4 +10,7 @@ public interface ReplyDAO {
 	public void create(ReplyVO vo) throws Exception;
 	public void update(ReplyVO vo) throws Exception;
 	public void delete(int rno) throws Exception;
+	
+	public  List<ReplyVO> listPage(int bno,Criteria cri) throws Exception;
+	public int count(int bno) throws Exception;
 }

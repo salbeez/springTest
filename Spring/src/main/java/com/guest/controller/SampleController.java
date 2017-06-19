@@ -9,15 +9,19 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.zerock.domain.MemberVO;
 
-@RestController
-@RequestMapping("sample")
+/*@RestController
+@RequestMapping("sample")*/
+@Controller
+@RequestMapping("/test/*")
 public class SampleController {
 
-	@RequestMapping("/hello")
+/*	@RequestMapping("/hello")
 	public String sayHello() {
 		return "Hello World";
 	}
@@ -53,5 +57,10 @@ public class SampleController {
 			list.add(vo);
 		}
 		return new ResponseEntity<>(list,HttpStatus.NOT_FOUND);
+	}*/
+	
+	@RequestMapping(value = "/test" ,method=RequestMethod.GET)
+	public void ajaxTest(){
+		
 	}
 }

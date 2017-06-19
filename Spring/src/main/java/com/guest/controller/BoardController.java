@@ -65,7 +65,6 @@ public class BoardController {
 		rttr.addFlashAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		rttr.addFlashAttribute("msg", "SUCCESS");
-		System.out.println("여기까지");
 		return "redirect:/board/listPage";
 	}
 
