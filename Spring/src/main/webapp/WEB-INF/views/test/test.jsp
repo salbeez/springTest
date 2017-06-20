@@ -167,7 +167,6 @@
 </head>
 <body>
 	<h2>Ajax Test Page</h2>
-
 	<div>
 		<div>
 			REPLYER <input type="text" name="replyer" id="newReplyWriter">

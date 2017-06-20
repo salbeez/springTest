@@ -28,7 +28,6 @@ public class ReplyContcoller {
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public ResponseEntity<String> register(@RequestBody ReplyVO vo) {
-
 		ResponseEntity<String> entity = null;// json 형태로 만들겠다
 
 		try {
@@ -90,19 +89,19 @@ public class ReplyContcoller {
 		try {
 			Criteria cri = new Criteria();
 			cri.setPage(page);
-			
+
 			PageMaker pageMaker = new PageMaker();
 			pageMaker.setCri(cri);
-			
+
 			Map<String, Object> map = new HashMap<>();
 			List<ReplyVO> list = service.listReplyPage(bno, cri);
 			map.put("list", list);
-			
+
 			int replyCount = service.count(bno);
 			pageMaker.setTotalCount(replyCount);
-			
+
 			map.put("pageMaker", pageMaker);
-			entity = new ResponseEntity<Map<String, Object>>(map,HttpStatus.OK);
+			entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
