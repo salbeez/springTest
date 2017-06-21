@@ -14,23 +14,25 @@
 		console.log(formObj);
 	});
 
-	$(document).on("click", "#modifyBoard", function() {
+	$(document).on("click", ".btn-warnin", function() {
 		formObj.attr("action", "/sboard/modifyPage");
 		formObj.attr("method", "get");
 		formObj.submit();
 	});
 
-	$(document).on("click", "#removeBoard", function() {
-		formObj.attr("method", "get");
+	$(document).on("click", ".btn-danger", function() {
+		formObj.attr("method","get");
 		formObj.attr("action", "/sboard/remove");
 		formObj.submit();
 	});
 
-	$(document).on("click", "#listAllBtn", function() {
-		formObj.attr("method", "get");
+	$(document).on("click", ".btn-primary", function() {
+		formObj.attr("method","get");
 		formObj.attr("action", "/sboard/list");
 		formObj.submit();
 	});
+	
+
 </script>
 <script id="template" type="text/x-handlebars-template">
 {{#each .}}
@@ -130,62 +132,13 @@ $(document).on("click", "#replyAddBtn", function() {// add reply
 				getPage("/replies/"+bno+"/"+replyPage);
 				replyerObj.val("");
 				replytextObj.val("");
-				
+				alert('끝');
 			}
 		}
 	});
 	 
 });
-$(document).on("click","#replyModBtn", function() {
-	var rno = $(".modal-title").html();
-	var replytext = $("#replytext").val();
-	
-	$.ajax({
-		type : 'put',
-		url : '/replies/'+rno,
-		headers : {
-			"Content-Type" : "application/json",
-			"X-HTTP-Method-Override" : "PUT"
-		},
-		data:JSON.stringify({replytext:replytext}),
-		success : function(result){
-			if(result =='SUCCESS'){
-				alert('수정되었습니다');
-				getPage("/replies/"+bno+"/"+replyPage);
-			}
-		}
-	});
-});
 
-$(document).on("click","#replyDelBtn",function(){
-	alert("삭제버튼");
-	var rno = $(".modal-title").html();
-	var replytext = $("#replytext").val();
-	$.ajax({
-		type:'delete',
-		url:'/replies/'+rno,
-		headers: { 
-			"Content-Type": "application/json",
-			"X-HTTP-Method-Override": "DELETE" },
-			success:function(result){
-			
-				console.log("result: " + result);
-				if(result == 'SUCCESS') {
-					alert("삭제 되었습니다.");
-					getPage("/replies/"+bno+"/"+replyPage);	
-				}
-			}
-	});
-});
-
-$(document).on("click", ".timeline .replyLi", function(event){
-	
-	var reply = $(this);
-	
-	$("#replytext").val(reply.find('.timeline-body').text());
-	$(".modal-title").html(reply.attr("data-rno"));
-	
-});
 </script>
 
 <%@ include file="../include/header.jsp"%>
@@ -220,9 +173,9 @@ $(document).on("click", ".timeline .replyLi", function(event){
 <!-- /.box-body -->
 
 <div class="box-footer">
-	<button type="submit" class="btn btn-warnin" id="modifyBoard">Modify</button>
-	<button type="submit" class="btn btn-danger" id="removeBoard">Remove</button>
-	<button type="submit" class="btn btn-primary" id="listAllBtn">LIST ALL</button>
+	<button type="submit" class="btn btn-warnin">Modify</button>
+	<button type="submit" class="btn btn-danger">Remove</button>
+	<button type="submit" class="btn btn-primary">LIST ALL</button>
 </div>
 
 <div class="row">
@@ -257,28 +210,5 @@ $(document).on("click", ".timeline .replyLi", function(event){
 
 <div class="text-center">
 	<ul id="pagination" class="pagination pagination-sm no-margin"></ul>
-</div>
-
-<!-- Modal -->
-<div id="modifyModal" class="modal modal-primary fade" role="dialog">
-	<div class="modal-dialog">
-		<!-- Modal content-->
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title"></h4>
-			</div>
-			<div class="modal-body" data-rno>
-				<p>
-					<input type="text" id="replytext" class="form-control">
-				</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-info" id="replyModBtn">Modify</button>
-				<button type="button" class="btn btn-danger" id="replyDelBtn">DELETE</button>
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
 </div>
 <%@ include file="../include/footer.jsp"%>
