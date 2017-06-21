@@ -15,6 +15,10 @@
 		select count(*) from tbl_reply where bno = #{bno}
 	</select>
 
+	<select id="getBno" resultType="int">
+		select bno from tbl_reply where rno = #{rno}
+	</select>
+	
 	<insert id="create">
 		insert into tbl_reply (rno,bno,replytext,replyer)
 		values (tbl_reply_seq.nextval,#{bno},#{replytext},#{replyer})

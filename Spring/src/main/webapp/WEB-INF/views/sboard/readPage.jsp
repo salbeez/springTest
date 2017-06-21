@@ -252,7 +252,7 @@ $(document).on("click", ".timeline .replyLi", function(event){
 <!-- The Time line -->
 <ul class="timeline">
 	<li class="time-label" id="repliesDiv"><span class="bg-green">Replies
-			List</span></li>
+			List <strong>[ ${guestVO.replycnt} ]</strong> </span></li>
 </ul>
 
 <div class="text-center">

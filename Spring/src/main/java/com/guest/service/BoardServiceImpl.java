@@ -5,6 +5,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.guest.domain.Criteria;
 import com.guest.domain.GuestVO;
@@ -21,9 +23,11 @@ public class BoardServiceImpl implements BoardService {
 	public void regist(GuestVO vo) throws Exception {
 		dao.create(vo);
 	}
-
+	
+	@Transactional(isolation=Isolation.READ_COMMITTED)
 	@Override
 	public GuestVO read(int bno) throws Exception {
+		dao.updateViewCnt(bno);
 		return dao.read(bno);
 	}
 
