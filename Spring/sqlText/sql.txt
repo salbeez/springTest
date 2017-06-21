@@ -49,7 +49,24 @@ values (tbl_reply_seq.nextval,555033,'댓글'||tbl_reply_seq.nextval,'망나뇽'
 
 
 
+//--------------------------
 
+create table tbl_user(
+  uid VARCHAR2(50) PRIMARY KEY,
+  upw VARCHAR2(50) not NULL,
+  uname VARCHAR2(100) not null,
+  upoint NUMBER DEFAULT 0
+);
+
+CREATE SEQUENCE tbl_board_seq START WITH 1 INCREMENT BY 1 MAXVALUE 100 CYCLE NOCACHE;
+
+ALTER TABLE tbl_message
+ADD CONSTRAINT FK_userTarget
+FOREIGN KEY (TARGETID) REFERENCES tbl_user(uid0);
+
+ALTER TABLE tbl_message
+ADD CONSTRAINT FK_userSender
+FOREIGN KEY (TARGETID) REFERENCES tbl_user(uid0);
 
 
 
