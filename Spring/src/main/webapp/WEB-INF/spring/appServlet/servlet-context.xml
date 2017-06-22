@@ -40,9 +40,10 @@
 		<!-- value="10485760" 10mb 정도 -->
 	</beans:bean>
 
+
 	<beans:bean id="uploadPath" class="java.lang.String">
 		<beans:constructor-arg value="C:/Users/kosta/Desktop/upload">
-		<!-- 저장될 경로 -->
+			<!-- 저장될 경로 -->
 		</beans:constructor-arg>
 	</beans:bean>
 

@@ -21,6 +21,14 @@
 		</repository>
 	</repositories>
 	<dependencies>
+
+		<!-- java mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		</dependency>
+
 		<!-- 이미지 깨끗하게 축소하기 위해 -->
 		<dependency>
 			<groupId>org.imgscalr</groupId>
