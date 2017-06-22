@@ -9,6 +9,7 @@ public class GuestVO {
 	private String writer;
 	private Date regdate;
 	private int viewcnt;
+	private int replycnt;
 
 	public GuestVO() {
 	}
@@ -61,10 +62,18 @@ public class GuestVO {
 		this.viewcnt = viewcnt;
 	}
 
+	public int getReplycnt() {
+		return replycnt;
+	}
+
+	public void setReplycnt(int replycnt) {
+		this.replycnt = replycnt;
+	}
+
 	@Override
 	public String toString() {
 		return "GuestVO [bno=" + bno + ", title=" + title + ", content=" + content + ", writer=" + writer + ", regdate="
-				+ regdate + ", viewcnt=" + viewcnt + "]";
+				+ regdate + ", viewcnt=" + viewcnt + ", replycnt=" + replycnt + "]";
 	}
 
 }

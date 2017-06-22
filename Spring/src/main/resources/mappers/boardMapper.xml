@@ -9,7 +9,7 @@
 
 	<select id="read" resultType="guestRow">
 		select
-		bno,title,content,writer,regdate,viewcnt
+		bno,title,content,writer,regdate,viewcnt,replycnt
 		from tbl_board
 		where bno =
 		#{bno}
@@ -27,7 +27,7 @@
 
 	<select id="listAll" resultType="guestRow">
 		<![CDATA[ 
-			select bno,title,content,writer,regdate,viewcnt
+			select bno,title,content,writer,regdate,viewcnt,replycnt
 			from tbl_board
 			where bno>0
 			order by bno desc, regdate desc
@@ -85,4 +85,14 @@
 		]]>
 		<include refid="search"></include>
 	</select>
+	
+	<update id="updateReplyCnt">
+		update tbl_board set replycnt = (select count(rno) from tbl_reply where bno = tbl_board.bno) 
+		<!-- 한 게시글당 댓글수 -->
+		<!-- replycnt+ #{amount} where bno = #{bno} -->
+	</update>
+	
+	<update id="updateViewCnt">
+		update tbl_board set viewcnt = viewcnt+1 where bno =#{bno}
+	</update>
 </mapper>

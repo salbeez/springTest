@@ -82,4 +82,17 @@ public class BoardDAOImpl implements BoardDAO {
 		return session.selectList(namespace+".listSearch",cri,bounds);
 	}
 
+	@Override
+	public void updateReplyCnt(int bno, int amount) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("bno", bno);
+		map.put("amount", amount);	
+		session.update(namespace+".updateReplyCnt",map);
+	}
+
+	@Override
+	public void updateViewCnt(int bno) throws Exception {
+		session.update(namespace+".updateViewCnt",bno);
+	}
+
 }

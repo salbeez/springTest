@@ -65,7 +65,7 @@
 		<tr>
 			<td>${guestVO.bno}</td>
 			<td><a
-				href="/board/readPage${pageMaker.makeSearch(pageMaker.cri.page) }&bno=${guestVO.bno}">${guestVO.title}</a></td>
+				href="/sboard/readPage${pageMaker.makeSearch(pageMaker.cri.page) }&bno=${guestVO.bno}">${guestVO.title} <strong>[ ${guestVO.replycnt} ]</strong> </a></td>
 			<td>${guestVO.writer}</td>
 			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 					value="${guestVO.regdate}" /></td>
