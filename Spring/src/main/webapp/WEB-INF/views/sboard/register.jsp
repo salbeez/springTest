@@ -56,6 +56,7 @@
 	});
 
 	$(document).on("click", "#registerForm", function(event) {
+		alert("check")
 		event.preventDefault();
 		var that = $(this);
 		var str = "";
@@ -64,7 +65,8 @@
 		});
 		alert(str);
 		that.append(str);
-		$(this).submit();
+		//that.get(0).submit();
+		$('form[role=form]').submit();
 	});
 </script>
 <%@ include file="../include/header.jsp"%>
