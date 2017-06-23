@@ -8,10 +8,10 @@
 <title>Insert title here</title>
 </head>
 <style>
-.fileDrop{
+.fileDrop {
 	width: 100%;
 	height: 200px;
-	border: 1px dotted blue;	
+	border: 1px dotted blue;
 }
 
 small {
@@ -41,12 +41,22 @@ $(document).on("drop",".fileDrop",function(event){
 		processData : false,
 		contentType : false,
 		success : function(data){
-			alert(data);	
+			var str='';
+			if(checkImageType(data)){
+				str = "<div> <img src='displayFile?fileName="+data+" '/>"+data+"</div>";
+			}else{
+				str = "<div>"+data+"</div>";
+			}
+			$(".uploadedList").append(str);
 		}
 	});
 	
 	console.log(file);
 });
+function checkImageType(fileName){
+	var pattern = /jpg|gif|png|jpeg/i;
+	return fileName.match(pattern);
+}
 
 </script>
 
@@ -54,9 +64,9 @@ $(document).on("drop",".fileDrop",function(event){
 
 	<h3>Ajax File Upload</h3>
 	<div class="fileDrop"></div>
-	
+
 	<div class="uploadedList"></div>
-	
-	
+
+
 </body>
 </html>
