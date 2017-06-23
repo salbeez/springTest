@@ -47,9 +47,11 @@ FOREIGN KEY (bno) REFERENCES tbl_board(bno);
 insert into tbl_reply (rno,bno,replytext,replyer) 
 values (tbl_reply_seq.nextval,555033,'댓글'||tbl_reply_seq.nextval,'망나뇽');
 
-
-
-
-
+drop table tbl_attach;
+create table tbl_attach(
+  fullName VARCHAR2(150) PRIMARY KEY,
+  bno NUMBER not null REFERENCES tbl_board(bno),
+  regdate TIMESTAMP DEFAULT sysdate
+);
 
 

@@ -8,10 +8,10 @@
 <title>Insert title here</title>
 </head>
 <style>
-.fileDrop{
+.fileDrop {
 	width: 100%;
 	height: 200px;
-	border: 1px dotted blue;	
+	border: 1px dotted blue;
 }
 
 small {
@@ -41,22 +41,72 @@ $(document).on("drop",".fileDrop",function(event){
 		processData : false,
 		contentType : false,
 		success : function(data){
-			alert(data);	
+			var str='';
+			
+			console.log(data);
+			console.log(checkImageType(data));
+			
+			if(checkImageType(data)){
+				str = "<div> <a href='displayFile?fileName="+getImageLink(data)+"'>"
+						+"<img src='displayFile?fileName="+data+" '/></a>"
+						+"<small data-src="+data+">X</small></div>";
+			}else{
+				str = "<div>"
+						+"<a href='displayFile?fileName="+data+"'>"+getOriginalName(data)+"</a>"
+						+"<small data-src="+data+">X</small></div>";
+			}
+			console.log(str+" data : "+data);
+			$(".uploadedList").append(str);
 		}
 	});
 	
 	console.log(file);
 });
+function checkImageType(fileName){
+	var pattern = /jpg|gif|png|jpeg/i;
+	return fileName.match(pattern);
+}
 
+function getOriginalName(fileName){
+	if(checkImageType(fileName)){
+		return;
+	}
+	var  idx = fileName.indexOf("_")+1;
+	return fileName.substr(idx);
+}
+function getImageLink(fileName){
+	if(!checkImageType(fileName)){
+		return;
+	}
+	var front  = fileName.substr(0,12);
+	var end = fileName.substr(14);
+	return front + end;
+}
+
+$(document).on("click",".uploadedList small",function(event){
+	var that = $(this);
+	
+	$.ajax({
+		url : "deleteFile",
+		type : 'POST',
+		data : {fileName:$(this).attr("data-src")},
+		success : function(result){
+			if(result == 'delete'){
+				alert('삭제');
+				that.parent("div").remove();
+			}
+		}
+	});
+});
 </script>
 
 <body>
 
 	<h3>Ajax File Upload</h3>
 	<div class="fileDrop"></div>
-	
+
 	<div class="uploadedList"></div>
-	
-	
+
+
 </body>
 </html>

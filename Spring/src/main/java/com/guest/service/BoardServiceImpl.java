@@ -19,9 +19,18 @@ public class BoardServiceImpl implements BoardService {
 	@Inject
 	private BoardDAO dao;
 
+	
+	@Transactional
 	@Override
 	public void regist(GuestVO vo) throws Exception {
 		dao.create(vo);
+		String files[] = vo.getFiles();
+		if(files ==null){//첨부 파일이 없는 경우
+			return;
+		}
+		for(String fileName : files){//여러개의 파일을 첨부 했을시
+			dao.addAttach(fileName);
+		}
 	}
 	
 	@Transactional(isolation=Isolation.READ_COMMITTED)

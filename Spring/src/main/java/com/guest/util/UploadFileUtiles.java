@@ -35,7 +35,7 @@ public class UploadFileUtiles {
 		}else{
 			uploadedFileName = makeIcon(uploadPath,savedPath,savedName);			
 		}
-		return "";
+		return uploadedFileName;
 	}
 	
 	private static String makeIcon(String uploadPath, String path, String fileName) {

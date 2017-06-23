@@ -72,7 +72,7 @@ public class UploadController {
 	@ResponseBody//jsp 연결하지 않고 그냥 쓰겠다
 	@RequestMapping(value="/uploadAjax", method= RequestMethod.POST,produces = "text/plain;charset=UTF-8")
 	public ResponseEntity<String> uploadAjax(MultipartFile file) throws Exception{
-		//형식은 JSON으로 
+		//형식은 JSON으로 .
 		logger.info("originalName : "+file.getOriginalFilename());
 		return new ResponseEntity<>(UploadFileUtiles.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()),HttpStatus.CREATED); //
 	}
@@ -107,6 +107,25 @@ public class UploadController {
 			in.close();
 		}
 		return entity;
+	}
+	@ResponseBody
+	@RequestMapping(value="/deleteFile",method = RequestMethod.POST)
+	public ResponseEntity<String> deleteFile(String fileName)throws Exception{
+		logger.info("delete File : "+fileName);
+		
+		String formatName = fileName.substring(fileName.lastIndexOf(".")+1);
+		
+		MediaType mType = MediaUtils.getMediaType(formatName);
+		
+		if(mType !=null){
+			String front = fileName.substring(0, 12);
+			String end = fileName.substring(14);
+			System.out.println((uploadPath+(front+end)).replace('/',File.separatorChar));
+			new File((uploadPath+(front+end)).replace('/',File.separatorChar)).delete();
+		}
+		new File((uploadPath+fileName).replace('/', File.separatorChar)).delete();
+		
+		return new ResponseEntity<String>("delete",HttpStatus.OK);
 		
 	}
 }
