@@ -97,6 +97,7 @@
 	</update>
 	
 	<insert id="addAttach">
-		insert into tbl_attach(fullname,bno) values (#{fullName},tbl_board_seq.currval)
+		insert into tbl_attach(fullname,bno) values (#{fullName},(select LAST_NUMBER from user_sequences
+		where SEQUENCE_NAME = 'TBL_BOARD_SEQ')-1)
 	</insert>
 </mapper>

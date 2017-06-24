@@ -11,7 +11,7 @@
 	</span>
 	<div class="mailbox-attachment-info">
 		<a href="{{getLink}}" class="mailbox-attachment-name">{{fileName}}</a>
-		<a href="{{fullName}}" class="btn btn-default btn-sx pull-right delbtn">
+		<a href="{{fullName}}" class="btn btn-default btn-sx pull-right delbtn" name=removeA>
 			<i class="fa fa-fw fa-remove"></i>
 		</a>
 	</div>
@@ -47,7 +47,6 @@
 			contentType : false,
 			type : 'post',
 			success : function(data) {
-				alert("drop : " + data)
 				var fileInfo = getFileInfo(data);
 				var html = template(fileInfo);
 				$(".uploadedList").append(html);
@@ -56,18 +55,31 @@
 	});
 
 	$(document).on("click", "#registerForm", function(event) {
-		alert("check")
 		event.preventDefault();
 		var that = $(this);
 		var str = "";
 		$(".uploadedList .delbtn").each(function(index) {
 			str += "<input type='hidden' name='files[" + index + "]' value='" + $(this).attr("href") + "'>";
 		});
-		alert(str);
 		that.append(str);
 		//that.get(0).submit();
 		$('form[role=form]').submit();
 	});
+	
+ 	$(document).on("click", "a[name=removeA]", function(event) {
+		event.preventDefault();
+		var that = $(this);
+		$.ajax({
+			url : "/deleteFile",
+			type : 'POST',
+			data : {fileName:$(this).attr("href")},
+			success : function(result){
+				if(result == 'delete'){
+					that.parentsUntil("ul").remove();
+				}
+			}
+		});
+	}); 
 </script>
 <%@ include file="../include/header.jsp"%>
 <form role="form" method="post">
