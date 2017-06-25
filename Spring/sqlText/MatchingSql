@@ -1,6 +1,6 @@
 sqlplus "/as sysdba"
-create user zxczxc identified by zxczxc;
-grant connect,resource, dba to zxczxc;
+create user cat identified by dog;
+grant connect,resource, dba to cat;
 
-alert user zxczxc identified by 123123;
+alert user cat identified by 123123;
 생성한 계정에 대해 수정시
